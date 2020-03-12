@@ -23,10 +23,14 @@ let callAPI = async ()=>{
     console.log(result.totalResults)
     total = result.totalResults;
     newsList = result.articles;
+
+    filterBySource();
+
     render(newsList)
 }
 
 function categoryFilter(choice) {
+    page=1;
     category = choice;
     callAPI();
 }
@@ -65,17 +69,17 @@ let render = (array) => {
     //     console.log(newArray2)
     // })        
 
-    let htmlForSources = array.map((item) => {
+    // let htmlForSources = array.map((item) => {
 
-        let sourceName = item.source.name.split('.')[0]
+    //     let sourceName = item.source.name.split('.')[0]
         
-        return `<div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="${item.source.name}" onclick="filterBySource(${item.source.name})">
-        <label class="custom-control-label" for="${item.source.name}">${sourceName}</label>
-      </div>`}).join('')
+    //     return `<div class="custom-control custom-checkbox">
+    //     <input type="checkbox" class="custom-control-input" id="${item.source.name}" onclick="filterBySource(${item.source.name})">
+    //     <label class="custom-control-label" for="${item.source.name}">${sourceName}</label>
+    //   </div>`}).join('')
     
     document.getElementById('totalNews').innerHTML = `Showing ${array.length} of ${total}`
-    document.getElementById('sourceArea').innerHTML = htmlForSources
+    // document.getElementById('sourceArea').innerHTML = htmlForSources
     document.getElementById('newsArea').innerHTML = htmlForNews
 
 }
@@ -113,9 +117,37 @@ async function searching() {
     render(newsList)
 }
 
-function filterBySource(sourceName){
-    listFilteredBySource = newsList.filter(() => {
-        return newsList.source.name = sourceName;
-    });
-    render(listFilteredBySource)
+function filterBySource(){
+    let sourceNames = newsList.map((item) => item.source.name.split('.')[0])
+    console.log('sourceNames:',sourceNames)
+
+    let sourceObject = sourceNames.reduce((total, name) => {
+        console.log('total:',total);
+        if(name in total){
+            total[name]++
+        } else {
+            total[name]=1
+        }
+        return total 
+    },{})
+
+    console.log('sourceObject:',sourceObject);
+
+    let sourceArray = Object.keys(sourceObject);
+
+    console.log('sourceArray:',sourceArray)
+
+    let htmlForSource = sourceArray.map((item) => 
+    `<div><input type="checkbox" onclick="sourceChange('${item}')" id="${item}"/>${item} (${sourceObject[item]})</div>`).join('');
+
+    document.getElementById("sourceArea").innerHTML = htmlForSource
+}
+
+let sourceChange = index => {
+    if(document.getElementById(index).checked==true){
+        let filteredNews = newsList.filter((item) => item.source.name.split('.')[0]===index)
+        render(filteredNews);
+    } else {
+        render(newsList)
+    }
 }
