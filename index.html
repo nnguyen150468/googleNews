@@ -6,11 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Unna:700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Nguyen's News</h1>
+        <h1 style="font-family: 'Unna', serif; font-size: 4em">Nguyen's News</h1>
     <div class="d-flex justify-content-end">
         <input type="text" id="searchBar" placeholder="keyword">
     <button onclick="searching()"><i class="glyphicon glyphicon-search"></i></button>
@@ -19,7 +20,7 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-3" style="border:1px solid grey;">
+            <div class="col-3">
                 <div id="totalNews">TOTAL news</div>
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +46,7 @@
                 </div>
 
             </div>
-            <div class="col-9" id="newsArea" style="border:1px solid grey">
+            <div class="col-9" id="newsArea">
             </div>
             <div class="container">
                 <div class="row">
