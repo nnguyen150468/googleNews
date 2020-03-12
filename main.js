@@ -60,25 +60,8 @@ let render = (array) => {
       </div>
     </div>
   </div>`}).join('')
-
-
-
-
-    // let sourceNames = array.map((item) => {
-    //     let newArray2 = item.source.name;
-    //     console.log(newArray2)
-    // })        
-
-    // let htmlForSources = array.map((item) => {
-
-    //     let sourceName = item.source.name.split('.')[0]
-        
-    //     return `<div class="custom-control custom-checkbox">
-    //     <input type="checkbox" class="custom-control-input" id="${item.source.name}" onclick="filterBySource(${item.source.name})">
-    //     <label class="custom-control-label" for="${item.source.name}">${sourceName}</label>
-    //   </div>`}).join('')
     
-    document.getElementById('totalNews').innerHTML = `Showing ${array.length} of ${total}`
+    document.getElementById('totalNews').innerHTML = `Showing <span class="text-primary">${array.length}</span> of <span class="text-primary">${total}</span>`
     // document.getElementById('sourceArea').innerHTML = htmlForSources
     document.getElementById('newsArea').innerHTML = htmlForNews
 
@@ -138,7 +121,8 @@ function filterBySource(){
     console.log('sourceArray:',sourceArray)
 
     let htmlForSource = sourceArray.map((item) => 
-    `<div><input type="checkbox" onclick="sourceChange('${item}')" id="${item}"/>${item} (${sourceObject[item]})</div>`).join('');
+    `<div><input type="checkbox" name="sources" onclick="sourceChange('${item}')" id="${item}"/>
+    <label for="${item}">${item} (${sourceObject[item]})</label></div>`).join('');
 
     document.getElementById("sourceArea").innerHTML = htmlForSource
 }
