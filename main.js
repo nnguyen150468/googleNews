@@ -14,7 +14,7 @@ let category = 'general';
 
 let callAPI = async ()=>{
     let apiKey = '31ab7921e9ce4dbfac4dd7b7413bd3de'; //get API key
-    let url=`http://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
+    let url=`https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
 
     let data = await fetch(url); //wait to fetch url. Without await the program runs to later steps and has errors
     let result = await data.json(); //wait for data to be parsed to object
@@ -84,7 +84,7 @@ let render = (array) => {
 async function loadMore(){
     page++;
     let apiKey = '31ab7921e9ce4dbfac4dd7b7413bd3de'; //get API key
-    let url=`http://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
+    let url=`https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
 
     let data = await fetch(url); //wait to fetch url. Without await the program runs to later steps and has errors
     let result = await data.json(); //wait for data to be parsed to object
@@ -101,7 +101,7 @@ callAPI()
 async function searching() {
     let keyword = document.getElementById("searchBar").value;
     let apiKey = '31ab7921e9ce4dbfac4dd7b7413bd3de'; //get API key
-    let url=`http://newsapi.org/v2/top-headlines?country=us&q=${keyword}&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
+    let url=`https://newsapi.org/v2/top-headlines?country=us&q=${keyword}&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}` //get url
 
     let data = await fetch(url); //wait to fetch url. Without await the program runs to later steps and has errors
     let result = await data.json(); //wait for data to be parsed to object
